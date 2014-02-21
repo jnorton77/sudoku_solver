@@ -1,19 +1,20 @@
 @last_array = ""
 
- def solved?(board_array)
-    if board_array.flatten.length == 81
-      true
-    else
-      if @last_array == board_array.flatten
-        @last_array
-        "Time to guess"
-        #Check_board
-      else
-        @last_array = board_array.flatten
-        "Go again"
-      end
-    end
+def solved?(board_array)
+  board_array.flatten.length == 81
+end
+
+def another_unnamed_method
+  if @last_array == board_array.flatten
+    @last_array
+    "Time to guess"
+    #Check_board
+  else
+    @last_array = board_array.flatten
+    "Go again"
   end
+end
+
 
   puts solved?([ 1, 1, 1, 1, 1, 1, 1, 1, 1,
     2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -31,7 +32,7 @@
     6, 6, 6, 6, 6, 6, 6, 6, 6,
     7, 7, 7, 7, 7, 7, 7, 7, 7,
     8, 8, 8, 8, 8, 8, 8, 8, 8,
-    9, 9, 9, 9, 9, 9, 9, 9, 9 ]) == "Go again"
+    9, 9, 9, 9, 9, 9, 9, 9, 9 ]) == false
 
   puts solved?([ 1, 2, [1,2,3,4,5,6,7,8,9], 4, 5, 6, 7, 8, 9,
     1, 2, [1,2,3,4,5,6,7,8,9], 4, 5, 6, 7, 8, 9,
@@ -41,7 +42,7 @@
     1, 2, [1,2,3,4,5,6,7,8,9], 4, 5, 6, 7, 8, 9,
     1, 2, [1,2,3,4,5,6,7,8,9], 4, 5, 6, 7, 8, 9,
     1, 2, [1,2,3,4,5,6,7,8,9], 4, 5, 6, 7, 8, 9,
-    1, 2, [1,2,3,4,5,6,7,8,9], 4, 5, 6, 7, 8, 9 ]) == "Go again"
+    1, 2, [1,2,3,4,5,6,7,8,9], 4, 5, 6, 7, 8, 9 ]) == false
 
   puts solved?([ 1, 1, 1, 1, 1, 1, 1, 1, 1,
     2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -59,7 +60,7 @@
     6, 6, 6, 6, 6, 6, 6, 6, 6,
     7, 7, 7, 7, 7, 7, 7, 7, 7,
     8, 8, 8, 8, 8, 8, 8, 8, 8,
-    9, 9, 9, 9, 9, 9, 9, 9, 9 ]) == "Go again"
+    9, 9, 9, 9, 9, 9, 9, 9, 9 ]) == false
 
   puts solved?([ 1, 1, 1, 1, 1, 1, 1, 1, 1,
     2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -77,7 +78,7 @@
     6, 6, 6, 6, 6, 6, 6, 6, 6,
     7, 7, 7, 7, 7, 7, 7, 7, 7,
     8, 8, 8, 8, 8, 8, 8, 8, 8,
-    9, 9, 9, 9, 9, 9, 9, 9, 9 ]) == "Time to guess"
+    9, 9, 9, 9, 9, 9, 9, 9, 9 ]) == false
 
   puts solved?([ 1, 1, 1, 1, 1, 1, 1, 1, 1,
     2, 2, 2, 2, 2, 2, 2, 2, 2,

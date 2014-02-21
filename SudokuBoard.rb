@@ -40,18 +40,19 @@ class SudokuBoard
     grid_array.sort                              #this sorts from least to greatest; now it loads all of row1, then row 2, then row3)
   end
 
-  def solved?
-    if board_array.flatten.length == 81
-      true
+
+  def solved?(board_array)
+    board_array.flatten.length == 81
+  end
+
+  def another_unnamed_method
+    if @last_array == board_array.flatten
+      @last_array
+      "Time to guess"
+      #Check_board
     else
-      if @last_array == board_array.flatten
-        @last_array
-        "Time to guess"
-        #Check_board
-      else
-        @last_array = board_array.flatten
-        "Go again"  #to be filled but will itereate back to see if there are any more changes
-      end
+      @last_array = board_array.flatten
+      "Go again"
     end
   end
 
