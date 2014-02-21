@@ -46,6 +46,14 @@ class SudokuBoard
 
   def solved?
   end
+
+  def get_row_num(index)
+    (index / 9) + 1
+  end
+
+  def get_col_num(index)
+    (index % 9) + 1
+  end
 end
 
 # ### ORIGINAL DRIVER CODE ###
