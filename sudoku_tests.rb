@@ -182,7 +182,7 @@ end_board.board_array =
     7, 7, 7, 7, 7, 7, 7, 7, 7,
     8, 8, 8, 8, 8, 8, 8, 8, 8,
     9, 9, 9, 9, 9, 9, 9, 9, 9 ]
-end_board.solve? == false
+puts end_board.solved? == false
 
 exit!
   puts solved?([ 1, 2, [1,2,3,4,5,6,7,8,9], 4, 5, 6, 7, 8, 9,

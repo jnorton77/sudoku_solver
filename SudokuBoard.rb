@@ -41,7 +41,7 @@ class SudokuBoard
   end
 
 
-  def solved?(board_array)
+  def solved?
     board_array.flatten.length == 81
   end
 
