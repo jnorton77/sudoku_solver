@@ -51,28 +51,28 @@ class SudokuBoard
   end
 
 
-  def solve_by_elimination
-    #take each row, col, grid and reduce possilbe numbers
-    # modify @board_array directly
-    1.upto(81)
-        if poss.is_a? Array
-          poss - get_row(get_row_num(idx))
-          # poss - get_col(get_col_num(idx))        # => [8], [5], [2, 3], [], [1]
-          # poss - get_grid(get_grid_num(idx))
-          if poss.length == 1
-            poss.pop
-          end
-        else
-          poss
+  # def solve_by_elimination
+  #   #take each row, col, grid and reduce possilbe numbers
+  #   # modify @board_array directly
+  #   1.upto(81)
+  #       if poss.is_a? Array
+  #         poss - get_row(get_row_num(idx))
+  #         # poss - get_col(get_col_num(idx))        # => [8], [5], [2, 3], [], [1]
+  #         # poss - get_grid(get_grid_num(idx))
+  #         if poss.length == 1
+  #           poss.pop
+  #         end
+  #       else
+  #         poss
 
-        end
-      }
-
-
-    }
+  #       end
+  #     }
 
 
-  end
+  #   }
+
+
+  # end
 
   def solved?
     board_array.flatten.length == 81
@@ -131,15 +131,15 @@ class SudokuBoard
   alias_method :to_s, :print_board
 end
 
-# ### ORIGINAL DRIVER CODE ###
+# # ### ORIGINAL DRIVER CODE ###
 
-board_string = File.readlines('sample.unsolved.txt').first.chomp
+# board_string = File.readlines('sample.unsolved.txt').first.chomp
 
-game = SudokuBoard.new(board_string)
+# game = SudokuBoard.new(board_string)
 
-# # Remember: this will just fill out what it can and not "guess"
-# game.solve!
+# # # Remember: this will just fill out what it can and not "guess"
+# # game.solve!
 
-p game.board_array
-p game.get_row(3)
-p game.solve_by_elimination
+# p game.board_array
+# p game.get_row(3)
+# p game.solve_by_elimination
