@@ -5,13 +5,25 @@ class SudokuBoard
   def initialize(board_string)
     @board_array = create_board(board_string)
   end
-  def print_board
-    #maps the string to an array ('board_array')
-  end
 
   def create_board(board_string)
     board_array = board_string.chars.map(&:to_i)
     board_array.map { |value| value == 0 ? [1,2,3,4,5,6,7,8,9] : value }
+  end
+
+  def get_row(row_num, board=board_array)
+    n = 9
+    index = row_num - 1
+    board.each_slice(9).to_a[index]
+  end
+
+  def get_col(col_num, board=board_array)
+    new_board = board.each_slice(9).to_a.transpose.flatten
+    get_row(col_num, new_board)
+  end
+
+  def print_board
+    #maps the string to an array ('board_array')
   end
 
   def check_board
@@ -20,53 +32,29 @@ class SudokuBoard
     evaluate_by_grid
   end
 
-  def evaluate_rows
-    #for EACH row, is 1..9?
+  def get_grid (grid_num)
+    index = 3*(grid_num-1) + ((grid_num-1.0)/3.0).floor*18
+    grid_array = Array.new
+    for cellnumber in index..(index+2) do
+      cell = cellnumber
+      grid_array << board_array[cell]
+      grid_array << board_array[cell+9]
+      grid_array << board_array[cell+18]                 #the grid will return top to bottom (column1row1, column2row1, column3row1, column2row1, column2row2, column2row3)
+    end
+    grid_array.sort                              #this sorts from least to greatest; now it loads all of row1, then row 2, then row3)
   end
 
-  def evaluate_columns
-    #for EACH column, is 1..9?
+  def solved?
   end
+end
 
-  def evaluate_grids
-    #for EACH grid, is 1..9?
-  end
+# ### ORIGINAL DRIVER CODE ###
 
-  def get_row (row_num)
-    # generates an array for row_num
-  end
+# board_string = File.readlines('sample.unsolved.txt').first.chomp
 
-  def get_column (column_num)
-    #generates an array for column_num
-  end
+# game = Sudoku.new(board_string)
 
- def get_grid (grid_num)
-    #generates an array for column_num
-  end
+# # Remember: this will just fill out what it can and not "guess"
+# game.solve!
 
-  def parse_grid
-    # write a method that returns the rows directly from the string (#slice might work? or #shift ?)
-    # generates an array for each row and calls enter_into_hash(created_row)
-  end
-
-def evaluate_...
-
-
-board_array = [
-[cell_0_possible_values],
-..
-[5]                                               #may need to sort arrays from using integers
-..
-[cell_80_possible_values]
-]
-# Added from file
-# The file has newlines at the end of each line, so we call
-# String#chomp to remove them.
-board_string = File.readlines('sample.unsolved.txt').first.chomp
-
-game = Sudoku.new(board_string)
-
-# Remember: this will just fill out what it can and not "guess"
-game.solve!
-
-puts game.board
+# puts game.board
