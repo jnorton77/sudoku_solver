@@ -1,4 +1,3 @@
-
 class SudokuBoard
   attr_accessor :array_of_cells, :board_array
 
