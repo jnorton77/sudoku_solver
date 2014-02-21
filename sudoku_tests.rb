@@ -161,7 +161,7 @@ grid_index_9 = [60, 61, 62, 69, 70, 71, 78, 79, 80]
 # print board #
 ###############
 
-puts "\nPRINTS THE M.F. BOARD!\n\n"
+puts "\nPRINTS THE MoFo BOARD!\n\n"
 grid_test = SudokuBoard.new("111222333111222333111222333444555666444555666444555666777888999777888999777888999")
 
 puts grid_test

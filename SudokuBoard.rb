@@ -52,10 +52,12 @@ class SudokuBoard
   end
 
   def print_board
-    #maps the string to an array ('board_array')
+    str = ''
+    board = board_array.each_slice(3).to_a.each_slice(3)
+    board
   end
 
-  alias_method :print_board, :to_s
+  alias_method :to_s, :print_board
 end
 
 # ### ORIGINAL DRIVER CODE ###
