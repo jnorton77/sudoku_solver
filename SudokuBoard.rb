@@ -3,15 +3,15 @@ class SudokuBoard
   attr_accessor :array_of_cells, :board_array
 
   def initialize(board_string)
-    @board_array = board_array
+    @board_array = create_board(board_string)
   end
   def print_board
     #maps the string to an array ('board_array')
   end
 
-  def create_board
-    board_array.split("").map {|x| x.to_i}.each_slice(1).to_a
-    board_array.map { |each| each == [0] ? [0] : each.to_s.to_i}
+  def create_board(board_string)
+    board_string.split("").map {|x| x.to_i}.each_slice(1).to_a
+    board_string.map { |each| each == [0] ? [0] : each.to_s.to_i}
   end
 
   def check_board
