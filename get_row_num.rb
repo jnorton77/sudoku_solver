@@ -63,31 +63,31 @@ grid_index_7 = [54, 55, 56, 63, 64, 65, 72, 73, 74]  # => [54, 55, 56, 63, 64, 6
 grid_index_8 = [57, 58, 59, 66, 67, 68, 75, 76, 77]  # => [57, 58, 59, 66, 67, 68, 75, 76, 77]
 grid_index_9 = [60, 61, 62, 69, 70, 71, 78, 79, 80]  # => [60, 61, 62, 69, 70, 71, 78, 79, 80]
 
-# def get_grid_num(index)
-#   i = index           # => 1, 4, 7, 0, 4, 7, 2, 4, 8
-#   if i % 3 == 0          # => false, false, false, true, false, false, false, false, false
-#      i / 3               # => 0
-#   elsif i % 3 == 1       # => true, true, true, true, true, false, true, false
-#      (i-1) / 3           # => 0, 1, 2, 1, 2, 1
-#   elsif i % 3 == 2       # => true, true
-#      (i-2) /3            # => 0, 2
-#    end                   # => 0, 1, 2, 0, 1, 2, 0, 1, 2
+def get_grid_num(index)
+  i = index           # => 1, 4, 7, 0, 4, 7, 2, 4, 8
+  if i % 3 == 0          # => false, false, false, true, false, false, false, false, false
+     i / 3               # => 0
+  elsif i % 3 == 1       # => true, true, true, true, true, false, true, false
+     (i-1) / 3           # => 0, 1, 2, 1, 2, 1
+  elsif i % 3 == 2       # => true, true
+     (i-2) /3            # => 0, 2
+   end                   # => 0, 1, 2, 0, 1, 2, 0, 1, 2
 
 
 
 
-# end
+end
 
-# puts "get_grid_num TESTS:"  # => nil
-# p get_grid_num(grid_index_1.sample) # == 1
-# p get_grid_num(grid_index_2.sample) # == 2
-# p get_grid_num(grid_index_3.sample) # == 3
-# p get_grid_num(grid_index_4.sample) # == 4
-# p get_grid_num(grid_index_5.sample) # == 5
-# p get_grid_num(grid_index_6.sample) # == 6
-# p get_grid_num(grid_index_7.sample) # == 7
-# p get_grid_num(grid_index_8.sample) # == 8
-# p get_grid_num(grid_index_9.sample) # == 9
+puts "get_grid_num TESTS:"  # => nil
+p get_grid_num(grid_index_1.sample) # == 1
+p get_grid_num(grid_index_2.sample) # == 2
+p get_grid_num(grid_index_3.sample) # == 3
+p get_grid_num(grid_index_4.sample) # == 4
+p get_grid_num(grid_index_5.sample) # == 5
+p get_grid_num(grid_index_6.sample) # == 6
+p get_grid_num(grid_index_7.sample) # == 7
+p get_grid_num(grid_index_8.sample) # == 8
+p get_grid_num(grid_index_9.sample) # == 9
 
 
 
