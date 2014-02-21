@@ -8,8 +8,6 @@ def get_col_num(index)
   (index % 9) + 1
 end
 
-
-
 # Tests
 first_index = (0..8).to_a
 second_index = (9..17).to_a
