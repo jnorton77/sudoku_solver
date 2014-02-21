@@ -10,8 +10,8 @@ class SudokuBoard
   end
 
   def create_board(board_string)
-    board_string.split("").map {|x| x.to_i}.each_slice(1).to_a
-    board_string.map { |each| each == [0] ? [0] : each.to_s.to_i}
+    board_array = board_string.chars.map(&:to_i)
+    board_array.map { |value| value == 0 ? [1,2,3,4,5,6,7,8,9] : value }
   end
 
   def check_board
