@@ -2,7 +2,7 @@
 class SudokuBoard
   attr_accessor :array_of_cells, :board_array
 
-  def intialize
+  def initialize(board_string)
     @board_array = board_array
   end
   def print_board
@@ -10,7 +10,8 @@ class SudokuBoard
   end
 
   def create_board
-    #maps the string to an array ('board_array')
+    board_array.split("").map {|x| x.to_i}.each_slice(1).to_a
+    board_array.map { |each| each == [0] ? [0] : each.to_s.to_i}
   end
 
   def check_board
@@ -58,3 +59,14 @@ board_array = [
 ..
 [cell_80_possible_values]
 ]
+# Added from file
+# The file has newlines at the end of each line, so we call
+# String#chomp to remove them.
+board_string = File.readlines('sample.unsolved.txt').first.chomp
+
+game = Sudoku.new(board_string)
+
+# Remember: this will just fill out what it can and not "guess"
+game.solve!
+
+puts game.board
