@@ -10,22 +10,13 @@ class SudokuBoard
 #     #maps the string to an array ('board_array')
 #   end
 =======
-  def initialize(board_string)
-    @board_array = board_array
-  end
   def print_board
     #maps the string to an array ('board_array')
   end
 
-<<<<<<< HEAD
- def create_board
-    board_array.split("").map {|x| x.to_i}.each_slice(1).to_a
-    board_array.map { |each| each == [0] ? [0] : each.to_s.to_i}
-=======
   def create_board(board_string)
     board_array = board_string.chars.map(&:to_i)
     board_array.map { |value| value == 0 ? [1,2,3,4,5,6,7,8,9] : value }
->>>>>>> 0ac9e49191530e102e586f7cff8030d3d81e5fc4
   end
 
 #   def check_board
@@ -91,4 +82,3 @@ game = Sudoku.new(board_string)
 game.solve!
 
 puts game.board
->>>>>>> db32cdd6dbabe2d35424949f6cbdec02b7e97220
