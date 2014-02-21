@@ -43,6 +43,9 @@ class SudokuBoard
     end
     grid_array.sort                              #this sorts from least to greatest; now it loads all of row1, then row 2, then row3)
   end
+
+  def solved?
+  end
 end
 
 # ### ORIGINAL DRIVER CODE ###
