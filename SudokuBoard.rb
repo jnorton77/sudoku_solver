@@ -22,10 +22,6 @@ class SudokuBoard
     get_row(col_num, new_board)
   end
 
-  def print_board
-    #maps the string to an array ('board_array')
-  end
-
   def check_board
     evaluate_by_row
     evaluate_by_column
@@ -54,6 +50,12 @@ class SudokuBoard
   def get_col_num(index)
     (index % 9) + 1
   end
+
+  def print_board
+    #maps the string to an array ('board_array')
+  end
+
+  alias_method :print_board, :to_s
 end
 
 # ### ORIGINAL DRIVER CODE ###
