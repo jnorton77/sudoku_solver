@@ -3,6 +3,7 @@ class SudokuBoard
 
   def initialize(board_string)
     @board_array = create_board(board_string)
+    @last_array = ""
   end
 
   def create_board(board_string)
@@ -38,12 +39,13 @@ class SudokuBoard
       cell = cellnumber
       grid_array << board_array[cell]
       grid_array << board_array[cell+9]
-      grid_array << board_array[cell+18]                 #the grid will return top to bottom (column1row1, column2row1, column3row1, column2row1, column2row2, column2row3)
+      grid_array << board_array[cell+18]                 #the git grid will return top to bottom (column1row1, column2row1, column3row1, column2row1, column2row2, column2row3)
     end
     grid_array.sort                              #this sorts from least to greatest; now it loads all of row1, then row 2, then row3)
   end
 
   def solved?
+<<<<<<< HEAD
   end
 
   def get_row_num(index)
@@ -53,6 +55,20 @@ class SudokuBoard
   def get_col_num(index)
     (index % 9) + 1
   end
+=======
+    if board_array.flatten.length == 81
+      true
+    else
+      if @last_array == board_array.flatten
+        @last_array
+        "Time to guess"
+        #Check_board
+      else
+        @last_array = board_array.flatten
+        "Go again"  #to be filled but will itereate back to see if there are any more changes
+      end
+    end
+>>>>>>> kelsey
 end
 
 # ### ORIGINAL DRIVER CODE ###
