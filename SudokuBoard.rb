@@ -17,9 +17,8 @@ class SudokuBoard
   def solve!
     until self.solved?
       solve_by_elimination
-      print_board
     end
-
+    print_board
   end
 
   def solve_by_elimination
@@ -138,17 +137,21 @@ end
 
 # # # ### ORIGINAL DRIVER CODE ###
 
-board_string = File.readlines('sample.unsolved.txt').first.chomp
-
-game = SudokuBoard.new(board_string)
+unsolved_problems = File.readlines('sample.unsolved.txt').map(&:chomp)
+unsolved_problems.each_with_index do |board_string, index|
+  puts "Problem number #{index+1}"
+  puts board_string
+  game = SudokuBoard.new(board_string)
+  game.solve!
+end
 
 # # # Remember: this will just fill out what it can and not "guess"
 # # game.solve!
 
 # p game.board_array
 # # p game.get_row(3)
-puts game.board_string
-game.solve!
+# puts game.board_string
 
 
-puts game.check_board
+
+# puts game.check_board
