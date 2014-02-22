@@ -81,6 +81,14 @@ class SudokuBoard
     board_array.flatten.length == 81
   end
 
+  def impossible?
+
+  end
+
+  def need_guess?
+
+  end
+
   def get_row_num(index)
     (index / 9) + 1
   end
@@ -144,14 +152,3 @@ unsolved_problems.each_with_index do |board_string, index|
   game = SudokuBoard.new(board_string)
   game.solve!
 end
-
-# # # Remember: this will just fill out what it can and not "guess"
-# # game.solve!
-
-# p game.board_array
-# # p game.get_row(3)
-# puts game.board_string
-
-
-
-# puts game.check_board
