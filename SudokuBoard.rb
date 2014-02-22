@@ -15,10 +15,26 @@ class SudokuBoard
   end
 
   def solve!
-    until self.solved?
+    until solved?
       solve_by_elimination
+      if impossible?
+        puts "Impossible!"
+        break
+      elsif need_guess?
+        puts "Guess Time!"
+        break
+      end
     end
     print_board
+  end
+
+  def need_guess?
+    if board_array.flatten == last_array
+      true
+    else
+      self.last_array = board_array.flatten
+      false
+    end
   end
 
   def solve_by_elimination
@@ -53,8 +69,6 @@ class SudokuBoard
       index += n
     end
     sol
-    # new_board = board.each_slice(9).to_a.transpose.flatten
-    # get_row(col_num, new_board)
   end
 
   def get_grid (grid_num)
@@ -82,12 +96,9 @@ class SudokuBoard
   end
 
   def impossible?
-
+    board_array.include?([])
   end
 
-  def need_guess?
-
-  end
 
   def get_row_num(index)
     (index / 9) + 1
@@ -129,17 +140,6 @@ class SudokuBoard
     puts str
   end
 
-  def another_unnamed_method
-    if last_array == board_array.flatten
-      last_array
-      "Time to guess"
-      #Check_board
-    else
-      last_array = board_array.flatten
-      "Go again"
-    end
-  end
-
   alias_method :to_s, :print_board
 end
 
@@ -149,6 +149,13 @@ unsolved_problems = File.readlines('sample.unsolved.txt').map(&:chomp)
 unsolved_problems.each_with_index do |board_string, index|
   puts "Problem number #{index+1}"
   puts board_string
+  puts
   game = SudokuBoard.new(board_string)
+  puts "Before:"
+  game.print_board
+  puts
+  puts "After:"
   game.solve!
+  puts
+  puts
 end
