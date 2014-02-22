@@ -19,11 +19,11 @@ class SudokuBoard
     # modify @board_array directly
     board_array.each_with_index do |number, index|
       if number.is_a? Array
-        self.board_array[index] = number - get_row(get_row_num(index))
-        self.board_array[index] = number - get_col(get_col_num(index))
-        self.board_array[index] = number - get_grid(get_grid_num(index))
+        self.board_array[index] = board_array[index] - get_row(get_row_num(index))
+        self.board_array[index] = board_array[index] - get_col(get_col_num(index))
+        self.board_array[index] = board_array[index] - get_grid(get_grid_num(index))
         if board_array[index].length == 1
-          self.board_array[index] = number.pop
+          self.board_array[index] = board_array[index].pop
         end
       end
     end
@@ -36,8 +36,16 @@ class SudokuBoard
   end
 
   def get_col(col_num, board=board_array)
-    new_board = board.each_slice(9).to_a.transpose.flatten
-    get_row(col_num, new_board)
+    n = 9
+    index = col_num - 1
+    sol = []
+    while index < 81
+      sol << board[index]
+      index += n
+    end
+    sol
+    # new_board = board.each_slice(9).to_a.transpose.flatten
+    # get_row(col_num, new_board)
   end
 
   def get_grid (grid_num)
@@ -52,52 +60,13 @@ class SudokuBoard
      grid_array
   end
 
-  # def check_board
-  #   evaluate_by_row
-  #   evaluate_by_column
-  #   evaluate_by_grid
-  # end
-
-  # def evaluate_by_row
-  #   for x in 0..80
-  #     board_array[x] = board_array[x] - get_row[x+1/9]
-  #   end
-  # end
-
-  # def evaluate_by_column
-  #   for x in 0..80
-  #     board_array[x] = board_array[x] - get_col[x+1/9]
-  #   end
-  # end
-
-  # def evaluate_by_grid
-  #   for x in 0..80
-  #     board_array[x] = board_array[x] - indices_of_grids_array[get_grid_num(x)]
-  #   end
-  # end
-
-  # def generate_array_of_grids_with_cell_indices               #this method is initialized when a new object of class Sudukoboard is instantiatedgit pull
-  #   indices_of_grids_array = Array.new
-  #   for grid_num in 1..9
-  #     index = 3*(grid_num-1) + ((grid_num-1.0)/3.0).floor*18
-  #     index_of_grid_array = Array.new
-  #     for cell in index..(index+2) do
-  #       index_of_grid_array << cell
-  #       index_of_grid_array << cell+9
-  #       index_of_grid_array << cell+18
-  #     end
-  #     indices_of_grids_array << index_of_grid_array
-  #   end
-  #   indices_of_grids_array
-  # end
-
-  # def get_grid_num(cell_index)
-  #   for x in 0..8
-  #   if indices_of_grids_array[x].include? (cell_index)
-  #       return x+1
-  #     end
-  #   end
-  # end
+  def check_board
+    (1..9).all? do |num|
+      get_row(num).sort == [1,2,3,4,5,6,7,8,9] &&
+      get_col(num).sort == [1,2,3,4,5,6,7,8,9] &&
+      get_grid(num).sort == [1,2,3,4,5,6,7,8,9]
+    end
+  end
 
   def solved?
     board_array.flatten.length == 81
@@ -212,3 +181,5 @@ puts game.board_string
 game.solve_by_elimination
 game.print_board
 puts
+
+puts game.check_board
