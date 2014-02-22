@@ -24,14 +24,17 @@ class SudokuBoard
 
   def solve_by_elimination
     board_array.each_index do |index|
-      # ANIMATION
-      if board_array[index].is_a? Array
-        self.board_array[index] = board_array[index] - get_row(get_row_num(index))
-        self.board_array[index] = board_array[index] - get_col(get_col_num(index))
-        self.board_array[index] = board_array[index] - get_grid(get_grid_num(index))
-        if board_array[index].length == 1
-          self.board_array[index] = board_array[index].pop
-        end
+      update_cell(index)
+    end
+  end
+
+  def update_cell(index)
+    if board_array[index].is_a? Array
+      self.board_array[index] = board_array[index] - get_row(get_row_num(index))
+      self.board_array[index] = board_array[index] - get_col(get_col_num(index))
+      self.board_array[index] = board_array[index] - get_grid(get_grid_num(index))
+      if board_array[index].length == 1
+        self.board_array[index] = board_array[index].pop
       end
     end
   end
