@@ -1,9 +1,11 @@
 class SudokuBoard
-  attr_accessor :array_of_cells, :board_array
+  attr_accessor :array_of_cells, :board_array, :indices_of_grids_array, :last_array
 
-  def initialize(board_string)
+  def initialize(board_string, last_array="")
     @board_array = create_board(board_string)
-    @last_array = ""
+    @last_array = last_array
+    @indices_of_grids_array = indices_of_grids_array
+    generate_array_of_grids_with_cell_values
   end
 
   def create_board(board_string)
@@ -28,26 +30,49 @@ class SudokuBoard
     evaluate_by_grid
   end
 
-  def get_grid (grid_num)
-    index = 3*(grid_num-1) + ((grid_num-1.0)/3.0).floor*18
-    grid_array = Array.new
-    for cellnumber in index..(index+2) do
-      cell = cellnumber
-      grid_array << board_array[cell]
-      grid_array << board_array[cell+9]
-      grid_array << board_array[cell+18]                 #the git grid will return top to bottom (column1row1, column2row1, column3row1, column2row1, column2row2, column2row3)
+  def evaluate_by_row
+    for x in 0..80
+      board_array[x] = board_array[x] - get_row[x+1/9]
     end
-    grid_array.sort                              #this sorts from least to greatest; now it loads all of row1, then row 2, then row3)
+  end
+
+  def evaluate_by_column
+    for x in 0..80
+      board_array[x] = board_array[x] - get_col[x+1/9]
+    end
+  end
+
+  def evaluate_by_grid
+    for x in 0..80
+      board_array[x] = board_array[x] - indices_of_grids_array[get_grid_num(x)]
+    end
+  end
+
+  def generate_array_of_grids_with_cell_indices               #this method is initialized when a new object of class Sudukoboard is instantiatedgit pull
+    indices_of_grids_array = Array.new
+    for grid_num in 1..9
+      index = 3*(grid_num-1) + ((grid_num-1.0)/3.0).floor*18
+      index_of_grid_array = Array.new
+      for cell in index..(index+2) do
+        index_of_grid_array << cell
+        index_of_grid_array << cell+9
+        index_of_grid_array << cell+18
+      end
+      indices_of_grids_array << index_of_grid_array
+    end
+    indices_of_grids_array
+  end
+
+  def get_grid_num(cell_index)
+    for x in 0..8
+    if indices_of_grids_array[x].include? (cell_index)
+        return x+1
+      end
+    end
   end
 
   def print_board
     #maps the string to an array ('board_array')
-  end
-
-  def check_board
-    evaluate_by_row
-    evaluate_by_column
-    evaluate_by_grid
   end
 
 
@@ -79,31 +104,31 @@ class SudokuBoard
   end
 
   def another_unnamed_method
-    if @last_array == board_array.flatten
-      @last_array
+    if last_array == board_array.flatten
+      last_array
       "Time to guess"
       #Check_board
     else
-      @last_array = board_array.flatten
+      last_array = board_array.flatten
       "Go again"
     end
   end
 
-  def get_row_num(index)
-    (index / 9) + 1
-  end
+  # def get_row_num(index)
+  #   (index / 9) + 1
+  # end
 
-  def get_col_num(index)
-    (index % 9) + 1
-  end
+  # def get_col_num(index)
+  #   (index % 9) + 1
+  # end
 
-  def get_grid_num(index)
-    grid_of_index = [ 1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,
-                4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,
-                7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9
-                ]
-    grid_of_index[index]
-  end
+  # def get_grid_num(index)
+  #   grid_of_index = [ 1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,
+  #               4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,
+  #               7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9
+  #               ]
+  #   grid_of_index[index]
+  # end
 
   def print_board
     vert_div = ' '
