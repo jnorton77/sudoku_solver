@@ -14,11 +14,18 @@ class SudokuBoard
     board_array.map { |value| value == 0 ? [1,2,3,4,5,6,7,8,9] : value }
   end
 
+  def solve!
+    until self.solved?
+      solve_by_elimination
+      print_board
+    end
+
+  end
+
   def solve_by_elimination
-    #take each row, col, grid and reduce possilbe numbers
-    # modify @board_array directly
-    board_array.each_with_index do |number, index|
-      if number.is_a? Array
+    board_array.each_index do |index|
+      # ANIMATION
+      if board_array[index].is_a? Array
         self.board_array[index] = board_array[index] - get_row(get_row_num(index))
         self.board_array[index] = board_array[index] - get_col(get_col_num(index))
         self.board_array[index] = board_array[index] - get_grid(get_grid_num(index))
@@ -108,6 +115,7 @@ class SudokuBoard
       end
       str << hori_div * width + "\n"
     end
+    str = hori_div * width + "\n" + str
     puts str
   end
 
@@ -122,7 +130,7 @@ class SudokuBoard
     end
   end
 
-  # alias_method :to_s, :print_board
+  alias_method :to_s, :print_board
 end
 
 # # # ### ORIGINAL DRIVER CODE ###
@@ -137,49 +145,7 @@ game = SudokuBoard.new(board_string)
 # p game.board_array
 # # p game.get_row(3)
 puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
+game.solve!
 
-puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
-puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
-
-puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
-puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
-
-puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
-puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
-
-puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
-puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
-
-puts game.board_string
-game.solve_by_elimination
-game.print_board
-puts
 
 puts game.check_board
