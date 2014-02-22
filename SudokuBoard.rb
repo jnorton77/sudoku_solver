@@ -1,7 +1,8 @@
 class SudokuBoard
-  attr_accessor :array_of_cells, :board_array, :indices_of_grids_array, :last_array
+  attr_accessor :array_of_cells, :board_array, :indices_of_grids_array, :last_array, :board_string
 
   def initialize(board_string, last_array="")
+    @board_string = board_string
     @board_array = create_board(board_string)
     @last_array = last_array
     # @indices_of_grids_array = indices_of_grids_array
@@ -16,13 +17,13 @@ class SudokuBoard
   def solve_by_elimination
     #take each row, col, grid and reduce possilbe numbers
     # modify @board_array directly
-    @board_array.each_with_index do |number, index|
+    board_array.each_with_index do |number, index|
       if number.is_a? Array
-        number - get_row(get_row_num(index))
-        number - get_col(get_col_num(index))
-        number - get_grid(get_grid_num(index))
-        if number.length == 1
-          number = number.pop
+        self.board_array[index] = number - get_row(get_row_num(index))
+        self.board_array[index] = number - get_col(get_col_num(index))
+        self.board_array[index] = number - get_grid(get_grid_num(index))
+        if board_array[index].length == 1
+          self.board_array[index] = number.pop
         end
       end
     end
@@ -48,7 +49,7 @@ class SudokuBoard
       grid_array << board_array[cell+9]
       grid_array << board_array[cell+18]                 #the grid will return top to bottom (column1row1, column2row1, column3row1, column2row1, column2row2, column2row3)
     end
-     grid_array.sort                              #this sorts from least to greatest; now it loads all of row1, then row 2, then row3)
+     grid_array
   end
 
   # def check_board
@@ -119,12 +120,12 @@ class SudokuBoard
   end
 
   def print_board
-    vert_div = ' '
-    hori_div = ' '
+    vert_div = ':'
+    hori_div = '-'
     pad_width = 2
     width = nil
     str = ''
-    board = board_array.each_slice(3).to_a.each_slice(3).to_a.each_slice(3).to_a
+    board = board_array.map{|x| x.is_a?(Array) ? " " : x }.each_slice(3).to_a.each_slice(3).to_a.each_slice(3).to_a
     board.each do |stack|
       stack.each do |line|
         line_str = ' '
@@ -138,7 +139,7 @@ class SudokuBoard
       end
       str << hori_div * width + "\n"
     end
-    str
+    puts str
   end
 
   def another_unnamed_method
@@ -152,7 +153,7 @@ class SudokuBoard
     end
   end
 
-  alias_method :to_s, :print_board
+  # alias_method :to_s, :print_board
 end
 
 # # # ### ORIGINAL DRIVER CODE ###
@@ -166,5 +167,48 @@ game = SudokuBoard.new(board_string)
 
 # p game.board_array
 # # p game.get_row(3)
-p game.solve_by_elimination
-puts game
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
+
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
+
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
+
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
+
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
+
+puts game.board_string
+game.solve_by_elimination
+game.print_board
+puts
