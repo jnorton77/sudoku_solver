@@ -15,17 +15,40 @@ class SudokuBoard
   end
 
   def solve!
+    solve
+    print_board
+  end
+
+  def solve
     until solved?
       solve_by_elimination
       if impossible?
-        puts "Impossible!"
-        break
+        puts "INCONCIEVABLE!"
+        return false
       elsif need_guess?
-        puts "Guess Time!"
-        break
+        puts "I'm on the Brute Squad!"
+        brute_squad
       end
     end
-    print_board
+    board_array.join
+  end
+
+  def brute_squad
+    brute_board = board_array#[7, [3, 4], 2, 6, 8, 9, 1, [3, 4], [3, 4, 5], 8, [3, 4], 6, [1, 5], [5, 7], [1, 4, 7], [3, 4, 5, 7], 2, 9, 1, 5, 9, 3, [2, 7], [2, 4, 7], [4, 6, 7], [4, 7], 8, 4, [1, 7], 3, [1, 8, 9], [6, 7, 9], [1, 6, 7, 8], [2, 6, 7], 5, [2, 6, 7], 2, [1, 7], 8, [1, 9], [3, 6, 7, 9], 5, [3, 4, 6, 7], [3, 4, 7, 9], [3, 4, 6, 7], 6, 9, 5, 2, 4, [3, 7], 8, [3, 7], 1, 3, 8, 4, 7, [2, 5, 6], [2, 6], 9, 1, [2, 5], 5, 2, 1, [8, 9], [3, 9], [3, 8], [3, 4, 7], 6, [3, 4, 7], 9, 6, 7, 4, 1, [2, 3, 8], [2, 3, 5], [3, 8], [2, 3, 5]]
+    first_array_index = brute_board.index{ |index| index.is_a?(Array) && index.length == 2 }
+    guess_1 = brute_board[first_array_index].shift
+    guess_2 = brute_board[first_array_index].pop
+    brute_board[first_array_index] = guess_1
+    guess_seed = brute_board.map {|element| element.is_a?(Array) ? element = 0 : element}
+    solution = self.class.new(guess_seed.join).solve
+    if solution
+      self.board_array = create_board( solution )
+    else
+      puts "You are the Brute Squad!"
+      brute_board[first_array_index] = guess_2
+      guess_seed = brute_board.map {|element| element.is_a?(Array) ? element = 0 : element}
+      solution = self.class.new(guess_seed.join).solve
+    end
   end
 
   def need_guess?
@@ -159,3 +182,11 @@ unsolved_problems.each_with_index do |board_string, index|
   puts
   puts
 end
+
+# test = SudokuBoard.new("000689100800000029150000008403000050200005000090240801084700910500000060060410000")
+# puts board_string
+# puts "Before:"
+# test.print_board
+# puts
+# puts "After:"
+# test.solve!
