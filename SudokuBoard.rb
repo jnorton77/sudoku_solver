@@ -48,7 +48,7 @@ class SudokuBoard
       grid_array << board_array[cell+9]
       grid_array << board_array[cell+18]                 #the grid will return top to bottom (column1row1, column2row1, column3row1, column2row1, column2row2, column2row3)
     end
-    grid_array.sort                              #this sorts from least to greatest; now it loads all of row1, then row 2, then row3)
+     grid_array.sort                              #this sorts from least to greatest; now it loads all of row1, then row 2, then row3)
   end
 
   # def check_board
@@ -157,14 +157,14 @@ end
 
 # # # ### ORIGINAL DRIVER CODE ###
 
-# board_string = File.readlines('sample.unsolved.txt').first.chomp
+board_string = File.readlines('sample.unsolved.txt').first.chomp
 
-# game = SudokuBoard.new(board_string)
+game = SudokuBoard.new(board_string)
 
 # # # Remember: this will just fill out what it can and not "guess"
 # # game.solve!
 
 # p game.board_array
 # # p game.get_row(3)
-# p game.solve_by_elimination
-# puts game
+p game.solve_by_elimination
+puts game
