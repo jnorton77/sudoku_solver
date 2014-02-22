@@ -1,56 +1,106 @@
 class SudokuBoard
-  attr_accessor :array_of_cells, :board_array  # => nil
+<<<<<<< HEAD
+  attr_accessor :array_of_cells, :board_array
 
   def initialize(board_string)
-    @board_array = create_board(board_string)  # => [1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 8, [1, 2, 3, 4, 5, 6, 7, 8, 9], 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 6, 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 8, 1, 9, [1, 2, 3, 4, 5, 6, 7, 8, ...
-    @last_array = ""                           # => ""
+    @board_array = create_board(board_string)
+    @last_array = ""
+=======
+  attr_accessor :array_of_cells, :board_array, :indices_of_grids_array, :last_array
+
+  def initialize(board_string, last_array="")
+    @board_array = create_board(board_string)
+    @last_array = last_array
+    @indices_of_grids_array = indices_of_grids_array
+    generate_array_of_grids_with_cell_values
+>>>>>>> be6a7c62eb7d07ac3db6018d1ac140fbbdc2a8d7
   end
 
   def create_board(board_string)
-    board_array = board_string.chars.map(&:to_i)                          # => [1, 0, 5, 8, 0, 2, 0, 0, 0, 0, 9, 0, 0, 7, 6, 4, 0, 5, 2, 0, 0, 4, 0, 0, 8, 1, 9, 0, 1, 9, 0, 0, 7, 3, 0, 6, 7, 6, 2, 0, 8, 3, 0, 9, 0, 0, 0, 0, 0, 6, 1, 0, 5, 0, 0, 0, 7, 6, 0, 0, 0, 3, 0, 4, 3, 0, 0, 2, 0, 5, 0, 1, 6, 0, 0, 3, 0, 8, 9, 0, 0]
-    board_array.map { |value| value == 0 ? [1,2,3,4,5,6,7,8,9] : value }  # => [1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 8, [1, 2, 3, 4, 5, 6, 7, 8, 9], 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 6, 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 8, 1, 9...
+    board_array = board_string.chars.map(&:to_i)
+    board_array.map { |value| value == 0 ? [1,2,3,4,5,6,7,8,9] : value }
   end
 
   def get_row(row_num, board=board_array)
-    n = 9                                  # => 9, 9
-    index = row_num - 1                    # => 0, 1
-    board.each_slice(9).to_a[index]        # => [1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 8, [1, 2, 3, 4, 5, 6, 7, 8, 9], 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9]], [9, 2, 1, 2, 3, 4, 5, 6, 7]
+    n = 9
+    index = row_num - 1
+    board.each_slice(9).to_a[index]
   end
 
   def get_col(col_num, board=board_array)
-    new_board = board.each_slice(9).to_a.transpose.flatten  # => [1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 7, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4, 6, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 6, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 7, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 1, 2, 3, 4,...
-    get_row(col_num, new_board)                             # => [9, 2, 1, 2, 3, 4, 5, 6, 7]
+    new_board = board.each_slice(9).to_a.transpose.flatten
+    get_row(col_num, new_board)
   end
 
   def check_board
     evaluate_by_row
     evaluate_by_column
     evaluate_by_grid
+  end
+
+
+  def print_board
+    #maps the string to an array ('board_array')
+  end
+  def evaluate_by_row
+    for x in 0..80
+      board_array[x] = board_array[x] - get_row[x+1/9]
+    end
+  end
+
+  def evaluate_by_column
+    for x in 0..80
+      board_array[x] = board_array[x] - get_col[x+1/9]
+    end
+
+  end
+
+  def evaluate_by_grid
+    for x in 0..80
+      board_array[x] = board_array[x] - indices_of_grids_array[get_grid_num(x)]
+    end
+  end
+
+  def generate_array_of_grids_with_cell_indices               #this method is initialized when a new object of class Sudukoboard is instantiatedgit pull
+    indices_of_grids_array = Array.new
+    for grid_num in 1..9
+      index = 3*(grid_num-1) + ((grid_num-1.0)/3.0).floor*18
+      index_of_grid_array = Array.new
+      for cell in index..(index+2) do
+        index_of_grid_array << cell
+        index_of_grid_array << cell+9
+        index_of_grid_array << cell+18
+      end
+      indices_of_grids_array << index_of_grid_array
+    end
+    indices_of_grids_array
+  end
+
+  def get_grid_num(cell_index)
+    for x in 0..8
+    if indices_of_grids_array[x].include? (cell_index)
+        return x+1
+      end
+    end
   end
 
   def print_board
     #maps the string to an array ('board_array')
   end
 
-  def check_board
-    evaluate_by_row
-    evaluate_by_column
-    evaluate_by_grid
-  end
-
 
   def solve_by_elimination
     #take each row, col, grid and reduce possilbe numbers
     # modify @board_array directly
-    @board_array.each_with_index do |number, index|  # => [1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 8, [1, 2, 3, 4, 5, 6, 7, 8, 9], 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 6, 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 8, 1, 9, [1, 2, 3, 4, 5, 6, ...
-      if number.is_a? Array                          # => false, true
-        number - get_row(get_row_num(index))         # => [3, 4, 6, 7, 9]
-        number - get_col(get_col_num(index))         # => [8]
+    @board_array.each_with_index do |number, index|
+      if number.is_a? Array
+        number - get_row(get_row_num(index))
+        number - get_col(get_col_num(index))
         number - get_grid(get_grid_num(index))
         if number.length == 1
           number = number.pop
         end
-      end                                        # => 1
+      end
     end
   end
 
@@ -59,31 +109,49 @@ class SudokuBoard
   end
 
   def another_unnamed_method
-    if @last_array == board_array.flatten
-      @last_array
+    if last_array == board_array.flatten
+      last_array
       "Time to guess"
       #Check_board
     else
-      @last_array = board_array.flatten
+      last_array = board_array.flatten
       "Go again"
     end
   end
 
+
   def get_row_num(index)
-    (index / 9) + 1       # => 1
+    (index / 9) + 1
   end
 
   def get_col_num(index)
-    (index % 9) + 1       # => 2
+    (index % 9) + 1
   end
 
   def get_grid_num(index)
-    grid_of_index = [ 1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,  # => 3
-                4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,        # => 6
-                7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9         # => 9
-                ]                                                             # => [1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 4, 4, 4, 5, 5, 5, 6, 6, 6, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 7, 7, 7, 8, 8, 8, 9, 9, 9, 7, 7, 7, 8, 8, 8, 9, 9, 9]
-    grid_of_index[index]                                                      # => 1
+    grid_of_index = [ 1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,
+                4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,
+                7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9
+                ]
+    grid_of_index[index]
   end
+
+  # def get_row_num(index)
+  #   (index / 9) + 1
+  # end
+
+  # def get_col_num(index)
+  #   (index % 9) + 1
+  # end
+
+  # def get_grid_num(index)
+  #   grid_of_index = [ 1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,
+  #               4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,4,4,4,5,5,5,6,6,6,
+  #               7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9,7,7,7,8,8,8,9,9,9
+  #               ]
+  #   grid_of_index[index]
+  # end
+
 
   def print_board
     vert_div = ' '
@@ -108,32 +176,19 @@ class SudokuBoard
     str
   end
 
-  alias_method :to_s, :print_board  # => SudokuBoard
+  alias_method :to_s, :print_board
 end
 
 # # ### ORIGINAL DRIVER CODE ###
 
-board_string = File.readlines('sample.unsolved.txt').first.chomp  # => "105802000090076405200400819019007306762083090000061050007600030430020501600308900"
+board_string = File.readlines('sample.unsolved.txt').first.chomp
 
-game = SudokuBoard.new(board_string)  # => #<SudokuBoard:0x007f9a7b0265f8 @board_array=[1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 8, [1, 2, 3, 4, 5, 6, 7, 8, 9], 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 6, 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9],...
+game = SudokuBoard.new(board_string)
 
 # # Remember: this will just fill out what it can and not "guess"
 # game.solve!
 
-p game.board_array           # => [1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 8, [1, 2, 3, 4, 5, 6, 7, 8, 9], 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 6, 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 8, 1, 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], 1, 9, [1, 2, 3...
+p game.board_array
 # p game.get_row(3)
 p game.solve_by_elimination
 puts game
-
-# >> [1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 8, [1, 2, 3, 4, 5, 6, 7, 8, 9], 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 6, 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 6, 7, 8, 9], 8, 1, 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], 1, 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3...
-
-# ~> ArgumentError
-# ~> comparison of Fixnum with Array failed
-# ~>
-# ~> /Users/apprentice/Desktop/sudoku/sudoku/SudokuBoard.rb:40:in `sort'
-# ~> /Users/apprentice/Desktop/sudoku/sudoku/SudokuBoard.rb:40:in `get_grid'
-# ~> /Users/apprentice/Desktop/sudoku/sudoku/SudokuBoard.rb:61:in `block in solve_by_elimination'
-# ~> /Users/apprentice/Desktop/sudoku/sudoku/SudokuBoard.rb:57:in `each'
-# ~> /Users/apprentice/Desktop/sudoku/sudoku/SudokuBoard.rb:57:in `each_with_index'
-# ~> /Users/apprentice/Desktop/sudoku/sudoku/SudokuBoard.rb:57:in `solve_by_elimination'
-# ~> /Users/apprentice/Desktop/sudoku/sudoku/SudokuBoard.rb:139:in `<main>'
