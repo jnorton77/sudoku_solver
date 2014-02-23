@@ -4,12 +4,12 @@ class SudokuBoard
   include SudokuBoardStructure
   include SudokuBoardLogic
 
-  attr_accessor :array_of_cells, :board_array, :indices_of_grids_array, :last_array, :board_string
+  attr_accessor :board_array, :last_array, :board_string
 
-  def initialize(board_string, last_array="")
+  def initialize(board_string)
     @board_string = board_string
     @board_array = create_board(board_string)
-    @last_array = last_array
+    @last_array = ''
   end
 
   def create_board(board_string)
