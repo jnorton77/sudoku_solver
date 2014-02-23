@@ -4,7 +4,7 @@ class SudokuBoard
   include SudokuBoardStructure
   include SudokuBoardLogic
 
-  attr_accessor :board_array, :board_seed, :last_array
+  attr_accessor :board_array, :board_seed, :board_final, :last_array
 
   def initialize(board_seed)
     @board_seed = board_seed
@@ -34,7 +34,7 @@ class SudokuBoard
       end
     end
     puts "Solved!"
-    board_array.join
+    self.board_final = board_array.join
   end
 
   def need_guess?
