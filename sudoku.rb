@@ -124,7 +124,7 @@ end
 
 # # # ### ORIGINAL DRIVER CODE ###
 
-unsolved_problems = File.readlines('sample.unsolved.txt').map(&:chomp)
+unsolved_problems = File.readlines('prob_set_1.txt').map(&:chomp)
 unsolved_problems.each_with_index do |board_string, index|
   puts "Problem number #{index+1}"
   puts board_string
