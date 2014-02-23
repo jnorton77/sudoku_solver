@@ -44,7 +44,7 @@ class SudokuBoard
     if solution
       self.board_array = create_board( solution )
     else
-      puts "You are the Brute Squad!"
+      "You are the Brute Squad!"
       brute_board[first_array_index] = guess_2
       guess_seed = brute_board.map {|element| element.is_a?(Array) ? element = 0 : element}
       solution = self.class.new(guess_seed.join).solve
