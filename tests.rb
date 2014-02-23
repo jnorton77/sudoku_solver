@@ -54,10 +54,10 @@ empty_everything = SudokuBoard.new("0"*81)
 puts empty_everything.board_array == Array.new(81, [1,2,3,4,5,6,7,8,9])
 
 ####################################
-# rows, columns, and grides OH MY! #
+# rows, columns, and boxes OH MY! #
 ####################################
 
-puts "\nROWS, COLS, & GRIDS!\n\n"
+puts "\nROWS, COLS, & BOXES!\n\n"
 
 puts "Row Tests:"
 row_test = SudokuBoard.new("111111111222222222333333333444444444555555555666666666777777777888888888999999999")
@@ -85,23 +85,23 @@ puts col_test.get_col(8) == Array.new(9, 8)
 puts col_test.get_col(9) == Array.new(9, 9)
 puts
 
-puts "Grid Tests:"
-grid_test = SudokuBoard.new("111222333111222333111222333444555666444555666444555666777888999777888999777888999")
-puts grid_test.get_grid(1) == Array.new(9, 1)
-puts grid_test.get_grid(2) == Array.new(9, 2)
-puts grid_test.get_grid(3) == Array.new(9, 3)
-puts grid_test.get_grid(4) == Array.new(9, 4)
-puts grid_test.get_grid(5) == Array.new(9, 5)
-puts grid_test.get_grid(6) == Array.new(9, 6)
-puts grid_test.get_grid(7) == Array.new(9, 7)
-puts grid_test.get_grid(8) == Array.new(9, 8)
-puts grid_test.get_grid(9) == Array.new(9, 9)
+puts "Box Tests:"
+box_test = SudokuBoard.new("111222333111222333111222333444555666444555666444555666777888999777888999777888999")
+puts box_test.get_box(1) == Array.new(9, 1)
+puts box_test.get_box(2) == Array.new(9, 2)
+puts box_test.get_box(3) == Array.new(9, 3)
+puts box_test.get_box(4) == Array.new(9, 4)
+puts box_test.get_box(5) == Array.new(9, 5)
+puts box_test.get_box(6) == Array.new(9, 6)
+puts box_test.get_box(7) == Array.new(9, 7)
+puts box_test.get_box(8) == Array.new(9, 8)
+puts box_test.get_box(9) == Array.new(9, 9)
 
 #################################
-# row, column, and grid numbers #
+# row, column, and box numbers #
 #################################
 
-puts "\nROWS, COLS, & GRIDS (number)!\n\n"
+puts "\nROW, COL, & BOX NUMBERS!\n\n"
 no_empties = SudokuBoard.new("111111111222222222333333333444444444555555555666666666777777777888888888999999999")
 first_index = (0..8).to_a
 second_index = (9..17).to_a
@@ -147,15 +147,15 @@ puts no_empties.get_col_num(index_8.sample) == 8
 puts no_empties.get_col_num(index_9.sample) == 9
 puts
 
-grid_index_1 = [ 0,  1,  2,  9, 10, 11, 18, 19, 20]
-grid_index_2 = [ 3,  4,  5, 12, 13, 14, 21, 22, 23]
-grid_index_3 = [ 6,  7,  8, 15, 16, 17, 24, 25, 26]
-grid_index_4 = [27, 28, 29, 36, 37, 38, 45, 46, 47]
-grid_index_5 = [30, 31, 32, 39, 40, 41, 48, 49, 50]
-grid_index_6 = [33, 34, 35, 42, 43, 44, 51, 52, 53]
-grid_index_7 = [54, 55, 56, 63, 64, 65, 72, 73, 74]
-grid_index_8 = [57, 58, 59, 66, 67, 68, 75, 76, 77]
-grid_index_9 = [60, 61, 62, 69, 70, 71, 78, 79, 80]
+box_index_1 = [ 0,  1,  2,  9, 10, 11, 18, 19, 20]
+box_index_2 = [ 3,  4,  5, 12, 13, 14, 21, 22, 23]
+box_index_3 = [ 6,  7,  8, 15, 16, 17, 24, 25, 26]
+box_index_4 = [27, 28, 29, 36, 37, 38, 45, 46, 47]
+box_index_5 = [30, 31, 32, 39, 40, 41, 48, 49, 50]
+box_index_6 = [33, 34, 35, 42, 43, 44, 51, 52, 53]
+box_index_7 = [54, 55, 56, 63, 64, 65, 72, 73, 74]
+box_index_8 = [57, 58, 59, 66, 67, 68, 75, 76, 77]
+box_index_9 = [60, 61, 62, 69, 70, 71, 78, 79, 80]
 
 ############
 # end game #
@@ -206,8 +206,8 @@ puts end_board.solved? == true
 ###############
 
 puts "\nPRINTS THE MoFo BOARD!\n\n"
-grid_test = SudokuBoard.new("111222333111222333111222333444555666444555666444555666777888999777888999777888999")
+box_test = SudokuBoard.new("111222333111222333111222333444555666444555666444555666777888999777888999777888999")
 
-puts grid_test
+puts box_test
 
 

@@ -27,7 +27,7 @@ module SudokuBoardLogic
     if board_array[index].is_a? Array
       self.board_array[index] = board_array[index] - get_row(get_row_num(index))
       self.board_array[index] = board_array[index] - get_col(get_col_num(index))
-      self.board_array[index] = board_array[index] - get_grid(get_grid_num(index))
+      self.board_array[index] = board_array[index] - get_box(get_box_num(index))
       if board_array[index].length == 1
         self.board_array[index] = board_array[index].pop
       end

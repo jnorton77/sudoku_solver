@@ -50,7 +50,7 @@ class SudokuBoard
     (1..9).all? do |num|
       get_row(num).sort == [1,2,3,4,5,6,7,8,9] &&
       get_col(num).sort == [1,2,3,4,5,6,7,8,9] &&
-      get_grid(num).sort == [1,2,3,4,5,6,7,8,9]
+      get_box(num).sort == [1,2,3,4,5,6,7,8,9]
     end
   end
 
