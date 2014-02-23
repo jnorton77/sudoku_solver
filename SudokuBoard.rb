@@ -30,6 +30,7 @@ class SudokuBoard
         brute_squad
       end
     end
+    puts "Solved!"
     board_array.join
   end
 
@@ -44,7 +45,7 @@ class SudokuBoard
     if solution
       self.board_array = create_board( solution )
     else
-      "You are the Brute Squad!"
+      puts "You are the Brute Squad!"
       brute_board[first_array_index] = guess_2
       guess_seed = brute_board.map {|element| element.is_a?(Array) ? element = 0 : element}
       solution = self.class.new(guess_seed.join).solve
@@ -183,7 +184,7 @@ unsolved_problems.each_with_index do |board_string, index|
   puts
 end
 
-# test = SudokuBoard.new("000689100800000029150000008403000050200005000090240801084700910500000060060410000")
+# test = SudokuBoard.new("8000000000036000000700902000500070000000100030001000068008500010090000400")
 # puts board_string
 # puts "Before:"
 # test.print_board
