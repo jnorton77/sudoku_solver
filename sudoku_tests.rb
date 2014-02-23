@@ -1,4 +1,4 @@
-require './SudokuBoard'
+require './sudoku'
 ### TESTS ###
 puts "\nAll Tests Should Evaluate to * TRUE *\n\n"
 
