@@ -4,16 +4,16 @@ class SudokuBoard
   include SudokuBoardStructure
   include SudokuBoardLogic
 
-  attr_accessor :board_array, :last_array, :board_string
+  attr_accessor :board_array, :board_seed, :last_array
 
-  def initialize(board_string)
-    @board_string = board_string
-    @board_array = create_board(board_string)
+  def initialize(board_seed)
+    @board_seed = board_seed
+    @board_array = create_board(board_seed)
     @last_array = ''
   end
 
-  def create_board(board_string)
-    board_array = board_string.chars.map(&:to_i)
+  def create_board(board_seed)
+    board_array = board_seed.chars.map(&:to_i)
     board_array.map { |value| value == 0 ? [1,2,3,4,5,6,7,8,9] : value }
   end
 
