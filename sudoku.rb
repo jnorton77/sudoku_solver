@@ -9,7 +9,8 @@ class SudokuBoard
   attr_accessor :board_array, :board_seed, :board_final, :last_array
 
   def initialize(board_seed)
-    @board_seed = board_seed
+    @board_seed  = board_seed
+    @board_final = board_seed
     @board_array = create_board(board_seed)
     @last_array = ''
   end
@@ -28,14 +29,11 @@ class SudokuBoard
     until solved?
       solve_by_elimination
       if impossible?
-        puts "INCONCIEVABLE!"
         return false
       elsif need_guess?
-        puts "I'm on the Brute Squad!"
         brute_squad
       end
     end
-    puts "Solved!"
     self.board_final = board_array.join
   end
 
