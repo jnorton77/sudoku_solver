@@ -37,6 +37,10 @@ class SudokuBoard
     self.board_final = board_array.join
   end
 
+  def solved?
+    board_array.flatten.length == 81
+  end
+
   def need_guess?
     if board_array.flatten == last_array
       true
@@ -46,19 +50,15 @@ class SudokuBoard
     end
   end
 
+  def impossible?
+    board_array.include?([])
+  end
+
   def check_board
     (1..9).all? do |num|
       get_row(num).sort == [1,2,3,4,5,6,7,8,9] &&
       get_col(num).sort == [1,2,3,4,5,6,7,8,9] &&
       get_box(num).sort == [1,2,3,4,5,6,7,8,9]
     end
-  end
-
-  def solved?
-    board_array.flatten.length == 81
-  end
-
-  def impossible?
-    board_array.include?([])
   end
 end

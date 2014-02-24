@@ -8,12 +8,9 @@ module SudokuBoardStructure
   def get_col(col_num, board=board_array)
     n = 9
     index = col_num - 1
-    slice = []
-    while index < 81
-      slice << board[index]
-      index += n
+    n.times.inject([]) do |col, multiplier|
+      col << board[index + multiplier*n]
     end
-    slice
   end
 
   def get_box(box_num)
