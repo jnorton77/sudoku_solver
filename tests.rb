@@ -231,7 +231,5 @@ puts "After Solve:"
 box_test.print_board
 puts "seed:  #{box_test.board_seed}"
 puts "final: #{box_test.board_final}"
-puts box_test.board_final == "382619475594738621176425938863941752457263189921857364738594216245176893619382547"
-
-
-puts "\nSudoku... like a BOSS!!!\n\n"
+puts pass = box_test.board_final == "382619475594738621176425938863941752457263189921857364738594216245176893619382547"
+puts pass ? "\nSudoku... like a BOSS!!!\n\n" : "\nWhoops! You done f*cked up now.\n\n"

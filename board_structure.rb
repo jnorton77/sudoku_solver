@@ -16,16 +16,13 @@ module SudokuBoardStructure
     slice
   end
 
-  def get_box (box_num)
-    index = 3*(box_num-1) + ((box_num-1.0)/3.0).floor*18
-    box_array = Array.new
-    for cellnumber in index..(index+2) do
-      cell = cellnumber
-      box_array << board_array[cell]
-      box_array << board_array[cell+9]
-      box_array << board_array[cell+18]                 #the box will return top to bottom (column1row1, column2row1, column3row1, column2row1, column2row2, column2row3)
+  def get_box(box_num)
+    n = 3
+    index = box_num - 1
+    start = (index % n) * n + index/n * n**n
+    n.times.inject([]) do |box, multiplier|
+      box += board_array[start + n*n * multiplier, n]
     end
-     box_array
   end
 
   def get_row_num(index)
