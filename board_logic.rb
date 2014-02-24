@@ -1,19 +1,19 @@
 module SudokuBoardLogic
   def brute_squad
-    brute_board = board_array
-    first_array_index = brute_board.index{ |index| index.is_a?(Array) && index.length == 2 }
-    guess_1 = brute_board[first_array_index].shift
-    guess_2 = brute_board[first_array_index].pop
-    brute_board[first_array_index] = guess_1
-    guess_seed = brute_board.map {|element| element.is_a?(Array) ? element = 0 : element}
-    solution = self.class.new(guess_seed.join).solve
-    if solution
-      self.board_array = create_board( solution )
-    else
-      brute_board[first_array_index] = guess_2
-      guess_seed = brute_board.map {|element| element.is_a?(Array) ? element = 0 : element}
-      solution = self.class.new(guess_seed.join).solve
+    guesses = board_array.min_by {|cell| cell.is_a?(Array) ? cell.size : 10 }
+    index = board_array.find_index(guesses)
+    guesses.each do |guess|
+      board_array[index] = guess
+      guess_seed = to_seed(board_array)
+      if solution = self.class.new(guess_seed.join).solve
+        self.board_array = create_board( solution )
+        break
+      end
     end
+  end
+
+  def to_seed(board)
+    board.map {|cell| cell.is_a?(Array) ? cell = 0 : cell}
   end
 
   def solve_by_elimination
