@@ -8,12 +8,12 @@ module SudokuBoardStructure
   def get_col(col_num, board=board_array)
     n = 9
     index = col_num - 1
-    sol = []
+    slice = []
     while index < 81
-      sol << board[index]
+      slice << board[index]
       index += n
     end
-    sol
+    slice
   end
 
   def get_box (box_num)

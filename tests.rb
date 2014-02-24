@@ -213,13 +213,25 @@ end_board.board_array =
     9, 9, 9, 9, 9, 9, 9, 9, 9 ]
 puts end_board.solved? == true
 
-###############
-# print board #
-###############
+#########################
+# solve and print board #
+#########################
 
-puts "\nPRINTS THE MoFo BOARD!\n\n"
-box_test = SudokuBoard.new("111222333111222333111222333444555666444555666444555666777888999777888999777888999")
+puts "\nSOLVES AND PRINTS THE MoFo BOARD!\n\n"
+box_test = SudokuBoard.new("302609005500730000000000900000940000000000109000057060008500006000000003019082040")
+puts "Before Solve:"
+box_test.print_board
+puts "seed:  #{box_test.board_seed}"
+puts "final: #{box_test.board_final}"
+puts box_test.board_seed == box_test.board_final
+puts
+puts
+box_test.solve
+puts "After Solve:"
+box_test.print_board
+puts "seed:  #{box_test.board_seed}"
+puts "final: #{box_test.board_final}"
+puts box_test.board_final == "382619475594738621176425938863941752457263189921857364738594216245176893619382547"
 
-puts box_test
 
-
+puts "\nSudoku... like a BOSS!!!\n\n"

@@ -16,8 +16,8 @@ module SudokuBoardOutput
     vert_div = ':'
     hori_div = '-'
     empty = '·'
-    board_str.gsub!(/0/, empty)
-    rows = board_str.scan(/.{#{ n*n }}/).map { |row| format_row(row, n, vert_div) }
+    str = board_str.gsub(/0/, empty)
+    rows = str.scan(/.{#{ n*n }}/).map { |row| format_row(row, n, vert_div) }
     row_length = rows.first.chomp.length
     bundles = rows.each_slice(n).map(&:join)
     bundles.join(hori_div * row_length + "\n")
