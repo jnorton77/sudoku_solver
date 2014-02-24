@@ -103,48 +103,48 @@ puts box_test.get_box(9) == Array.new(9, 9)
 
 puts "\nROW, COL, & BOX NUMBERS!\n\n"
 no_empties = SudokuBoard.new("111111111222222222333333333444444444555555555666666666777777777888888888999999999")
-first_index = (0..8).to_a
-second_index = (9..17).to_a
-third_index = (18..26).to_a
-fourth_index = (27..35).to_a
-fifth_index = (36..44).to_a
-sixth_index = (45..53).to_a
-seventh_index = (54..62).to_a
-eigth_index = (63..71).to_a
-ninth_index = (72..80).to_a
+row_index_1 = ( 0.. 8).to_a
+row_index_2 = ( 9..17).to_a
+row_index_3 = (18..26).to_a
+row_index_4 = (27..35).to_a
+row_index_5 = (36..44).to_a
+row_index_6 = (45..53).to_a
+row_index_7 = (54..62).to_a
+row_index_8 = (63..71).to_a
+row_index_9 = (72..80).to_a
 
 puts "Get Row Number:"
-puts no_empties.get_row_num(first_index.sample)   == 1
-puts no_empties.get_row_num(second_index.sample)  == 2
-puts no_empties.get_row_num(third_index.sample)   == 3
-puts no_empties.get_row_num(fourth_index.sample)  == 4
-puts no_empties.get_row_num(fifth_index.sample)   == 5
-puts no_empties.get_row_num(sixth_index.sample)   == 6
-puts no_empties.get_row_num(seventh_index.sample) == 7
-puts no_empties.get_row_num(eigth_index.sample)   == 8
-puts no_empties.get_row_num(ninth_index.sample)   == 9
+puts row_index_1.all?{ |row_num| no_empties.get_row_num(row_num) == 1 }
+puts row_index_2.all?{ |row_num| no_empties.get_row_num(row_num) == 2 }
+puts row_index_3.all?{ |row_num| no_empties.get_row_num(row_num) == 3 }
+puts row_index_4.all?{ |row_num| no_empties.get_row_num(row_num) == 4 }
+puts row_index_5.all?{ |row_num| no_empties.get_row_num(row_num) == 5 }
+puts row_index_6.all?{ |row_num| no_empties.get_row_num(row_num) == 6 }
+puts row_index_7.all?{ |row_num| no_empties.get_row_num(row_num) == 7 }
+puts row_index_8.all?{ |row_num| no_empties.get_row_num(row_num) == 8 }
+puts row_index_9.all?{ |row_num| no_empties.get_row_num(row_num) == 9 }
 puts
 
-index_1 = [0,  9, 18, 27, 36, 45, 54, 63, 72]
-index_2 = [1, 10, 19, 28, 37, 46, 55, 64, 73]
-index_3 = [2, 11, 20, 29, 38, 47, 56, 65, 74]
-index_4 = [3, 12, 21, 30, 39, 48, 57, 66, 75]
-index_5 = [4, 13, 22, 31, 40, 49, 58, 67, 76]
-index_6 = [5, 14, 23, 32, 41, 50, 59, 68, 77]
-index_7 = [6, 15, 24, 33, 42, 51, 60, 69, 78]
-index_8 = [7, 16, 25, 34, 43, 52, 61, 70, 79]
-index_9 = [8, 17, 26, 35, 44, 53, 62, 71, 80]
+col_index_1 = [0,  9, 18, 27, 36, 45, 54, 63, 72]
+col_index_2 = [1, 10, 19, 28, 37, 46, 55, 64, 73]
+col_index_3 = [2, 11, 20, 29, 38, 47, 56, 65, 74]
+col_index_4 = [3, 12, 21, 30, 39, 48, 57, 66, 75]
+col_index_5 = [4, 13, 22, 31, 40, 49, 58, 67, 76]
+col_index_6 = [5, 14, 23, 32, 41, 50, 59, 68, 77]
+col_index_7 = [6, 15, 24, 33, 42, 51, 60, 69, 78]
+col_index_8 = [7, 16, 25, 34, 43, 52, 61, 70, 79]
+col_index_9 = [8, 17, 26, 35, 44, 53, 62, 71, 80]
 
-puts "Get Column Number:"
-puts no_empties.get_col_num(index_1.sample) == 1
-puts no_empties.get_col_num(index_2.sample) == 2
-puts no_empties.get_col_num(index_3.sample) == 3
-puts no_empties.get_col_num(index_4.sample) == 4
-puts no_empties.get_col_num(index_5.sample) == 5
-puts no_empties.get_col_num(index_6.sample) == 6
-puts no_empties.get_col_num(index_7.sample) == 7
-puts no_empties.get_col_num(index_8.sample) == 8
-puts no_empties.get_col_num(index_9.sample) == 9
+puts "Get Col Number:"
+puts col_index_1.all?{ |col_num| no_empties.get_col_num(col_num) == 1 }
+puts col_index_2.all?{ |col_num| no_empties.get_col_num(col_num) == 2 }
+puts col_index_3.all?{ |col_num| no_empties.get_col_num(col_num) == 3 }
+puts col_index_4.all?{ |col_num| no_empties.get_col_num(col_num) == 4 }
+puts col_index_5.all?{ |col_num| no_empties.get_col_num(col_num) == 5 }
+puts col_index_6.all?{ |col_num| no_empties.get_col_num(col_num) == 6 }
+puts col_index_7.all?{ |col_num| no_empties.get_col_num(col_num) == 7 }
+puts col_index_8.all?{ |col_num| no_empties.get_col_num(col_num) == 8 }
+puts col_index_9.all?{ |col_num| no_empties.get_col_num(col_num) == 9 }
 puts
 
 box_index_1 = [ 0,  1,  2,  9, 10, 11, 18, 19, 20]
@@ -156,6 +156,18 @@ box_index_6 = [33, 34, 35, 42, 43, 44, 51, 52, 53]
 box_index_7 = [54, 55, 56, 63, 64, 65, 72, 73, 74]
 box_index_8 = [57, 58, 59, 66, 67, 68, 75, 76, 77]
 box_index_9 = [60, 61, 62, 69, 70, 71, 78, 79, 80]
+
+puts "Get Box Number:"
+puts box_index_1.all?{ |box_num| no_empties.get_box_num(box_num) == 1 }
+puts box_index_2.all?{ |box_num| no_empties.get_box_num(box_num) == 2 }
+puts box_index_3.all?{ |box_num| no_empties.get_box_num(box_num) == 3 }
+puts box_index_4.all?{ |box_num| no_empties.get_box_num(box_num) == 4 }
+puts box_index_5.all?{ |box_num| no_empties.get_box_num(box_num) == 5 }
+puts box_index_6.all?{ |box_num| no_empties.get_box_num(box_num) == 6 }
+puts box_index_7.all?{ |box_num| no_empties.get_box_num(box_num) == 7 }
+puts box_index_8.all?{ |box_num| no_empties.get_box_num(box_num) == 8 }
+puts box_index_9.all?{ |box_num| no_empties.get_box_num(box_num) == 9 }
+puts
 
 ############
 # end game #
